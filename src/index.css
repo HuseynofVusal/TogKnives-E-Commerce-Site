@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@font-face {
+  font-family: "Formular Regular";
+  src: url("/assets/fonts/formular-regular-trial.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Formular Regular", sans-serif;
+}
