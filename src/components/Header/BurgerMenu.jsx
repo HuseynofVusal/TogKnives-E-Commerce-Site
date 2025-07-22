@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CiFacebook, CiInstagram, CiYoutube } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
+import { NavLink } from "react-router";
 
 const BurgerMenu = ({ setBurger }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +12,6 @@ const BurgerMenu = ({ setBurger }) => {
     }, 10);
   }, []);
 
-  
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(() => {
@@ -51,13 +51,14 @@ const BurgerMenu = ({ setBurger }) => {
             "Higonokami",
             "About",
             "News",
-          ].map((item) => (
-            <li
-              key={item}
-              className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase"
+          ].map((item, i) => (
+            <NavLink
+              to={`/${item.toLowerCase()}`}
+              key={i}
+              className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col"
             >
               {item}
-            </li>
+            </NavLink>
           ))}
         </ul>
         <div className="flex items-center text-3xl gap-3 text-[#776c65] mt-6 border-b border-[#3a3737] pb-4">

@@ -8,3 +8,7 @@
 body {
   font-family: "Formular Regular", sans-serif;
 }
+.cont {
+  max-width: 1330px;
+  margin: 0 auto;
+}

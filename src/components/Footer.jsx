@@ -1,14 +1,15 @@
 import React from "react";
 import { CiFacebook, CiInstagram, CiYoutube } from "react-icons/ci";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
     <footer className="!bg-[rgb(50,50,54)]">
       <div className="max-w-[1320px] mx-auto py-4 px-6 lg:px-8 text-center">
-        <div className="flex justify-center items-center">
+        <NavLink to="/" className="flex justify-center items-center py-5">
           <img className="w-[155px]" src="/assets/images/logo.png" alt="logo" />
-        </div>
+        </NavLink>
         <div className="flex flex-wrap justify-between  gap-5">
           <div className="max-w-[200px]">
             <p className="text-white text-left text-[13px] font-extralight leading-[15px] cursor-pointer py-3 uppercase">
@@ -88,7 +89,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="text-white lg:max-w-1/3 max-w-1/2 mx-auto">
+          <div className="text-white lg:max-w-1/3 max-w-3/4 mx-auto">
             <h6 className="whitespace-nowrap text-white text-left text-[12px] font-extralight leading-[15px] cursor-pointer py-3 uppercase">
               Subscribe to our newsletter
             </h6>
@@ -102,7 +103,10 @@ const Footer = () => {
               <form className="flex flex-col gap-2">
                 <div className="">
                   <input
-                    className="outline-1 text-[#0a0a0a] px-3 py-2 w-full rounded-sm"
+                    className=" text-[#0a0a0a] px-3 py-2 w-full rounded-sm border border-gray-300 p-3 
+             focus:outline-none focus:orange-500 
+             focus:ring-2 focus:ring-orange-300 
+             transition duration-300"
                     type="email"
                     placeholder="Enter your email"
                     required
@@ -110,9 +114,10 @@ const Footer = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-sm bg-amber-500 text-white px-3 py-2 text-center flex justify-center items-center"
+                  className="w-full rounded-sm cursor-pointer bg-[#e97625]
+ text-white px-3 py-3 text-center flex justify-center items-center"
                 >
-                  <FaLongArrowAltRight />
+                  <FaLongArrowAltRight className="text-xl" />
                 </button>
               </form>
             </div>
@@ -134,7 +139,7 @@ const Footer = () => {
               Graftstudio
             </div>
           </div>
-          <div className="flex sm:order-1 -order-1 gap-2">
+          <div className="flex flex-wrap sm:order-1 -order-1 gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               role="img"
@@ -187,7 +192,7 @@ const Footer = () => {
               width="38"
               height="24"
               viewBox="0 0 165.521 105.965"
-              xml:space="preserve"
+              xmlSpace="preserve"
               aria-labelledby="pi-apple_pay"
             >
               <title id="pi-apple_pay">Apple Pay</title>
@@ -301,12 +306,12 @@ const Footer = () => {
                   y2="9.104"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#F89F20"></stop>
-                  <stop offset=".25" stop-color="#F79A20"></stop>
-                  <stop offset=".533" stop-color="#F68D20"></stop>
-                  <stop offset=".62" stop-color="#F58720"></stop>
-                  <stop offset=".723" stop-color="#F48120"></stop>
-                  <stop offset="1" stop-color="#F37521"></stop>
+                  <stop stopColor="#F89F20"></stop>
+                  <stop offset=".25" stopColor="#F79A20"></stop>
+                  <stop offset=".533" stopColor="#F68D20"></stop>
+                  <stop offset=".62" stopColor="#F58720"></stop>
+                  <stop offset=".723" stopColor="#F48120"></stop>
+                  <stop offset="1" stopColor="#F37521"></stop>
                 </linearGradient>
                 <linearGradient
                   id="pi-paint1_linear"
@@ -316,10 +321,10 @@ const Footer = () => {
                   y2="6.446"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#F58720"></stop>
-                  <stop offset=".359" stop-color="#E16F27"></stop>
-                  <stop offset=".703" stop-color="#D4602C"></stop>
-                  <stop offset=".982" stop-color="#D05B2E"></stop>
+                  <stop stopColor="#F58720"></stop>
+                  <stop offset=".359" stopColor="#E16F27"></stop>
+                  <stop offset=".703" stopColor="#D4602C"></stop>
+                  <stop offset=".982" stopColor="#D05B2E"></stop>
                 </linearGradient>
               </defs>
             </svg>
