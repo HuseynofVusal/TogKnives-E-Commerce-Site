@@ -69,7 +69,7 @@ const About = () => {
         </div>
       </div>
       {/* Icon Wrapper  */}
-      <div className="flex justify-between items-center gap-3 cont py-10 flex-col lg:flex-row px-5">
+      <div className="flex justify-between items-center gap-3 cont !py-10 flex-col lg:flex-row px-5">
         <div className="flex gap-3 lg:w-full w-1/3 lg:border-r lg:pr-6 lg:border-[#776c65] border-b pb-6 lg:border-b-0 border-[#776c65]  flex-col items-center cursor-pointer">
           <div>
             <img
@@ -102,7 +102,7 @@ const About = () => {
           <div>
             <MdOutlinePayment className="w-[40px] h-[40px] text-[#acabaa]" />
           </div>
-          <p className="uppercase text-[12px] text-[#776c65] whitespace-nowrap">
+          <p className="uppercase text-[12px] text-[#776c65] whitespace-nowrap content-start">
             Pay In 3 Instalments
           </p>
         </div>

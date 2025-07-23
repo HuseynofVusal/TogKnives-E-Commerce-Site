@@ -4,13 +4,16 @@ import HeroSection from "../components/HeroSection";
 import { HiHome } from "react-icons/hi";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlinePayment } from "react-icons/md";
+// import { useLocation } from "react-router";
 
 const Home = () => {
+  // const location = useLocation().pathname;
+
   return (
     <main className="relative">
       <HeroSection />
       {/* Icon Wrapper  */}
-      <div className="flex justify-between items-center gap-3 cont py-10 overflow-x-auto">
+      <div className="flex justify-between items-center gap-3 cont !py-10 overflow-x-auto">
         <div className="flex gap-3 items-center cursor-pointer">
           <div>
             <img

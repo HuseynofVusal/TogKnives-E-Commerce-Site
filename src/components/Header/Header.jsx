@@ -25,9 +25,9 @@ const Header = () => {
   return (
     <header
       className={`py-4  ${
-        isScrolled || location != "/about"
+        isScrolled || location == "/"
           ? "bg-white text-[#776c65] fixed w-full top-0 left-0 z-50 duration-300 "
-          : "text-white bg-transparent absolute z-50 left-0 top-0"
+          : "text-white bg-transparent absolute z-50 left-0 top-0 w-full"
       } shadow-md `}
     >
       <div className="grid grid-cols-3 items-center justify-between max-w-[1320px] mx-auto py-4 px-6 lg:px-8">
@@ -35,11 +35,11 @@ const Header = () => {
           <MdMenu onClick={() => setBurger(true)} />
           <CiSearch className="sm:hidden block" />
         </div>
-        <NavLink to="/">
+        <NavLink className={"flex lg:justify-start justify-center"} to="/">
           <img
             className="w-[115px] md:w-[155px] "
             src={`${
-              isScrolled || location != "/about"
+              isScrolled || location == "/"
                 ? "./assets/images/logo-black.png"
                 : "./assets/images/logo.png"
             }`}
@@ -47,11 +47,10 @@ const Header = () => {
           />
         </NavLink>
         <ul className="hidden lg:flex items-center justify-center uppercase gap-4">
-          <li
+          <NavLink
+            to="/category?category=knives"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Knives</span>
@@ -59,12 +58,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=sets"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Sets</span>
@@ -72,12 +70,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=storage"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Storage</span>
@@ -85,12 +82,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=sharpening"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Sharpening</span>
@@ -98,12 +94,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=board"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Board</span>
@@ -111,12 +106,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=higonokami"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Higonokami</span>
@@ -124,12 +118,11 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
-          <li
+          </NavLink>
+          <NavLink
+            to="/category?category=accessories"
             className={`${
-              isScrolled || location != "/about"
-                ? "text-[#776c65]"
-                : "!text-white"
+              isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Accessories</span>
@@ -137,16 +130,14 @@ const Header = () => {
               className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
             ></span>
-          </li>
+          </NavLink>
         </ul>
         <div className="flex justify-end items-center  gap-2">
-          <div className="hidden md:block content-end">
+          <div className="hidden lg:block content-end">
             <NavLink
               to="/about"
               className={`${
-                isScrolled || location != "/about"
-                  ? "text-[#776c65]"
-                  : "!text-white"
+                isScrolled || location == "/" ? "text-[#776c65]" : "!text-white"
               } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
             >
               <span className="uppercase">About</span>
