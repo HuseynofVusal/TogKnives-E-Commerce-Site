@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const HeroSection = () => {
   return (
@@ -6,7 +7,7 @@ const HeroSection = () => {
       <video
         className="w-full h-full object-cover"
         src="/assets/videos/video.mp4"
-        autoPlay
+        // autoPlay
         muted
         loop
         playsInline
@@ -20,12 +21,15 @@ const HeroSection = () => {
             Crafted in Japan.
           </p>
         </div>
-        <div className="uppercase bg-[#e97625] py-3 flex flex-nowrap items-center justify-center gap-2 mt-6 w-max px-2 mx-auto text-sm cursor-pointer group transition-all duration-300">
+        <NavLink
+          to="/category?category=knives"
+          className="uppercase bg-[#e97625] py-3 px-5 flex flex-nowrap items-center justify-center gap-2 mt-6 w-max  mx-auto text-sm cursor-pointer group transition-all duration-300"
+        >
           <span className="whitespace-nowrap">Discover Your Knife</span>
           <span className="text-lg inline-block transition-all duration-300 group-hover:translate-x-3">
             ➞
           </span>
-        </div>
+        </NavLink>
       </div>
     </div>
   );

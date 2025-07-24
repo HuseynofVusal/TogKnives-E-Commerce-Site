@@ -47,13 +47,14 @@ const BurgerMenu = ({ setBurger }) => {
             "Sets",
             "Storage",
             "Sharpening",
-            "Boards",
+            "Board",
             "Higonokami",
             "About",
             "News",
           ].map((item, i) => (
             <NavLink
-              to={`/${item.toLowerCase()}`}
+              onClick={()=>{setBurger(false)}}
+              to={`/category?category=${item.toLowerCase()}`}
               key={i}
               className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col"
             >
