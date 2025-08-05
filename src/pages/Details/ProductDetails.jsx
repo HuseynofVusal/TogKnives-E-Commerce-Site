@@ -30,6 +30,7 @@ const ProductDetails = () => {
   const [mainImage, setMainImage] = useState(allImages[0]);
   const [thumbnails, setThumbnails] = useState(allImages.slice(1));
   const [basketModal, setBasketModal] = useState(false);
+  const {data:products={}}=useGet
 
   const handleImageClick = (clickedImage) => {
     const newThumbs = [...thumbnails];

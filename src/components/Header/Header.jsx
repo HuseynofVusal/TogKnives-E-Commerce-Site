@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header
-      className={`py-4  ${
+      className={` overflow-x-hidden  ${
         isScrolled || location != "/category"
           ? "bg-white !text-[#776c65] fixed w-full top-0 left-0 z-50 duration-300 "
           : "text-white bg-transparent absolute z-50 left-0 top-0 w-full"
@@ -50,7 +50,9 @@ const Header = () => {
           <NavLink
             to="/category?category=knives"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Knives</span>
@@ -62,7 +64,9 @@ const Header = () => {
           <NavLink
             to="/category?category=sets"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Sets</span>
@@ -74,7 +78,9 @@ const Header = () => {
           <NavLink
             to="/category?category=storage"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Storage</span>
@@ -86,7 +92,9 @@ const Header = () => {
           <NavLink
             to="/category?category=sharpening"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Sharpening</span>
@@ -98,7 +106,9 @@ const Header = () => {
           <NavLink
             to="/category?category=board"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Board</span>
@@ -110,7 +120,9 @@ const Header = () => {
           <NavLink
             to="/category?category=higonokami"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Higonokami</span>
@@ -122,7 +134,9 @@ const Header = () => {
           <NavLink
             to="/category?category=accessories"
             className={`${
-              isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+              isScrolled || location != "/category"
+                ? "text-[#776c65]"
+                : "!text-white"
             } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
           >
             <span>Accessories</span>
@@ -137,7 +151,9 @@ const Header = () => {
             <NavLink
               to="/about"
               className={`${
-                isScrolled || location != "/category" ? "text-[#776c65]" : "!text-white"
+                isScrolled || location != "/category"
+                  ? "text-[#776c65]"
+                  : "!text-white"
               } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer pb-2`}
             >
               <span className="uppercase">About</span>
@@ -147,12 +163,12 @@ const Header = () => {
           <div className="flex items-center content-end gap-2 text-2xl">
             <CiSearch className="hidden sm:block" />
             <LuUser />
-            <div className="relative">
+            <NavLink to="/basket" className="relative">
               <BsBasket3 />
               <div className="absolute -top-3 -right-3 bg-[#e97625] w-5 h-5 rounded-full flex items-center justify-center">
                 <span className="text-sm">0</span>
               </div>
-            </div>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -90,6 +90,8 @@ const Home = () => {
           </p>
         </div>
       </div>
+
+      {/* Chat Button  */}
       <div className="bg-[#e97625] fixed right-[3%] bottom-[3%] z-50 flex items-center gap-2 px-4 py-3 rounded-xl hover:scale-[1.1] duration-200 text-white cursor-pointer">
         <AiFillMessage className="text-white text-xl" />
         <span className="font-semibold">Chat with us</span>
