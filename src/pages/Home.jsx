@@ -1,13 +1,11 @@
-import React from "react";
 import { AiFillMessage } from "react-icons/ai";
 import HeroSection from "../components/HeroSection";
 import { HiHome } from "react-icons/hi";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlinePayment } from "react-icons/md";
-// import { useLocation } from "react-router";
 
 const Home = () => {
-  // const location = useLocation().pathname;
+  
 
   return (
     <main className="relative">

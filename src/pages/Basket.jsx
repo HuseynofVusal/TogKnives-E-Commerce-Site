@@ -1,61 +1,31 @@
-import { useContext, useState } from "react";
 import { BsBasket3 } from "react-icons/bs";
-import { NavLink } from "react-router";
-import { SebetContext } from "../layout/MainLayoutPage";
+import { NavLink, useOutletContext } from "react-router";
 import { Minus, Plus, Gift, Clock } from "lucide-react";
+import { useAddBasketMutation, useDeleteBasketMutation } from "../store/api";
+import { useState } from "react";
 
 const Basket = () => {
-  const { basket } = useContext(SebetContext);
+  const basket = useOutletContext()[0];
+  console.log(basket);
 
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Higonokami Mini",
-      description: 'JAPANESE FOLDING POCKET KNIFE (1½" / 3.7CM)',
-      price: 0,
-      quantity: 1,
-      total: 0,
-      image: "/api/placeholder/120/120",
-      badge: "Free Gift (-$51.00)",
-      badgeType: "gift",
-    },
-    {
-      id: 2,
-      name: "Mini Bunka コンカ",
-      description: 'VEGETABLE CHOPPER (5¼"/14CM)',
-      price: 334,
-      quantity: 1,
-      total: 334,
-      image: "/api/placeholder/120/120",
-      badge: "ELIGIBLE FOR HOME TRIAL",
-      badgeType: "trial",
-    },
-  ]);
+  const [addBasket, ...basketData] = useAddBasketMutation();
+  const [deleteBasket, ...deletedBasketData] = useDeleteBasketMutation();
 
   const [notes, setNotes] = useState("");
 
-  const updateQuantity = (id, change) => {
-    setCartItems((prev) =>
-      prev.map((item) => {
-        if (item.id === id) {
-          const newQuantity = Math.max(1, item.quantity + change);
-          return {
-            ...item,
-            quantity: newQuantity,
-            total: item.price * newQuantity,
-          };
-        }
-        return item;
-      })
-    );
+  const updateQuantity = async (basketId, quantity) => {
+    console.log(quantity);
+
+    await addBasket({ basketId, quantity });
   };
 
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  const removeItem = async (id) => {
+    console.log(id);
+    
+    await deleteBasket(id);
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
-  const total = subtotal;
+  const total = basket.reduce((sum, item) => sum + +item.price, 0);
 
   return (
     <div className="pt-[84px]">
@@ -100,7 +70,7 @@ const Basket = () => {
 
               {/* Cart Items */}
               <div className="space-y-6 md:space-y-8">
-                {cartItems.map((item) => (
+                {basket?.map((item) => (
                   <div
                     key={item.id}
                     className="bg-white border border-gray-200 rounded-lg p-4 md:border-none md:bg-transparent md:p-0"
@@ -110,7 +80,7 @@ const Basket = () => {
                       <div className="flex gap-4 mb-4">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
                           <img
-                            src={item.image}
+                            src={item?.product?.images?.[0]?.url}
                             alt={item.name}
                             className="w-full h-full object-cover"
                           />
@@ -122,7 +92,7 @@ const Basket = () => {
                           <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide mb-2">
                             {item.description}
                           </p>
-                          {item.badge && (
+                          {/* {item.badge && (
                             <div
                               className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
                                 item.badgeType === "gift"
@@ -133,7 +103,7 @@ const Basket = () => {
                               {item.badgeType === "gift" && <Gift size={10} />}
                               <span className="text-xs">{item.badge}</span>
                             </div>
-                          )}
+                          )} */}
                         </div>
                       </div>
 
@@ -148,7 +118,7 @@ const Basket = () => {
                         <div className="text-sm text-gray-600">
                           Total:{" "}
                           <span className="font-semibold text-gray-900">
-                            ${item.total}
+                            ${item.price}
                           </span>
                         </div>
                       </div>
@@ -156,7 +126,9 @@ const Basket = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center border border-gray-300 rounded">
                           <button
-                            onClick={() => updateQuantity(item.id, -1)}
+                            onClick={() =>
+                              updateQuantity(item?.product?.id, -1)
+                            }
                             className="p-2 hover:bg-gray-50 text-gray-500"
                             disabled={item.quantity <= 1}
                           >
@@ -166,7 +138,7 @@ const Basket = () => {
                             {item.quantity}
                           </span>
                           <button
-                            onClick={() => updateQuantity(item.id, 1)}
+                            onClick={() => updateQuantity(item?.product?.id, 1)}
                             className="p-2 hover:bg-gray-50 text-gray-500"
                           >
                             <Plus size={14} />
@@ -183,12 +155,12 @@ const Basket = () => {
                     </div>
 
                     {/* Desktop Layout - Hidden on mobile */}
-                    <div className="hidden md:grid grid-cols-4 gap-4 items-start">
+                    <div className="hidden md:grid grid-cols-4 gap-4 items-center">
                       {/* Product Info */}
-                      <div className="flex gap-4">
+                      <div className="flex gap-4 ">
                         <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
                           <img
-                            src={item.image}
+                            src={item?.product?.images?.[0]?.url}
                             alt={item.name}
                             className="w-full h-full object-cover"
                           />
@@ -226,9 +198,9 @@ const Basket = () => {
                       <div className="flex items-center justify-center">
                         <div className="flex items-center border border-gray-300 rounded">
                           <button
-                            onClick={() => updateQuantity(item.id, -1)}
+                            onClick={() => updateQuantity(item?.product?.id, -1)}
                             className="p-2 hover:bg-gray-50 text-gray-500"
-                            disabled={item.quantity <= 1}
+                            disabled={item.quantity <= 0}
                           >
                             <Minus size={16} />
                           </button>
@@ -236,7 +208,9 @@ const Basket = () => {
                             {item.quantity}
                           </span>
                           <button
-                            onClick={() => updateQuantity(item.id, 1)}
+                            onClick={() =>
+                              updateQuantity(item?.product?.id, 1)
+                            }
                             className="p-2 hover:bg-gray-50 text-gray-500"
                           >
                             <Plus size={16} />
@@ -246,15 +220,15 @@ const Basket = () => {
 
                       {/* Total */}
                       <div className="text-right">
-                        <span className="text-base lg:text-lg font-medium text-gray-900">
-                          ${item.total}
+                        <span className="text-base lg:text-lg font-medium font-sans text-gray-900">
+                          ${item.price}
                         </span>
                       </div>
 
                       {/* Remove Button */}
                       <div className="col-span-4 flex justify-end mt-2">
                         <button
-                          onClick={() => removeItem(item.id)}
+                          onClick={() => removeItem(item?.product?.id)}
                           className="text-sm text-red-600 hover:text-red-700 uppercase tracking-wide font-medium"
                         >
                           REMOVE
@@ -281,7 +255,7 @@ const Basket = () => {
                       Subtotal
                     </span>
                     <span className="font-medium text-sm sm:text-base">
-                      {subtotal.toFixed(2)}
+                      {/* {subtotal.toFixed(2)} */}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-lg sm:text-xl font-semibold">

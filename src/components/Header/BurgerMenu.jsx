@@ -49,18 +49,30 @@ const BurgerMenu = ({ setBurger }) => {
             "Sharpening",
             "Board",
             "Higonokami",
-            "About",
-            "News",
           ].map((item, i) => (
             <NavLink
-              onClick={()=>{setBurger(false)}}
-              to={`/category?category=${item.toLowerCase()}`}
+              onClick={() => {
+                setBurger(false);
+              }}
+              to={`/main/category?category=${item.toLowerCase()}`}
               key={i}
               className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col"
             >
               {item}
             </NavLink>
           ))}
+          <NavLink
+            onClick={() => {
+              setBurger(false);
+            }}
+            to="/main/about"
+            className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col"
+          >
+            About
+          </NavLink>
+          <li className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col">
+            News
+          </li>
         </ul>
         <div className="flex items-center text-3xl gap-3 text-[#776c65] mt-6 border-b border-[#3a3737] pb-4">
           <CiFacebook />

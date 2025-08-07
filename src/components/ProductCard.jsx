@@ -1,21 +1,35 @@
-import React, { useState } from "react";
-import { products } from "../data/products";
+import React, { useEffect, useState } from "react";
 import Rating from "./Rating";
 import { BsBasket3, BsFillBasket2Fill } from "react-icons/bs";
 import { NavLink } from "react-router";
 import BasketModal from "./BasketModal";
+import { useGetProductQuery } from "../store/api";
 
 const ProductCard = () => {
+  const [products, setProducts] = useState([]);
+  const { data: fetchedProducts, ...getStatus } = useGetProductQuery();
+  
+  console.log(products);
+  
+
+  useEffect(() => {
+    if (fetchedProducts) {
+      setProducts(fetchedProducts.data);
+    }
+  }, [fetchedProducts]);
+
   const [basketModal, setBasketModal] = useState(false);
+
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-3">
       {products.map((item) => (
-        <NavLink to="/details" key={item.id} className="w-full relative">
+        <NavLink to={`/main/product?product=${item.id}`} key={item.id} className="w-full relative">
           <div className="w-full relative">
             <img
-              src={item.image}
+              src={item.images[0].url}
               className="max-h-[615px] w-full object-cover"
-              alt=""
+              alt={item.name}
             />
             <div
               onClick={() => {
@@ -31,8 +45,8 @@ const ProductCard = () => {
           </div>
           <div className="p-3">
             <h3 className="text-[#776c65] my-2">{item.name}</h3>
-            <p className="text-[#776c65] text-[12px] my-2 uppercase">
-              {item.description}
+            <p className="text-[#776c65] text-[12px] my-2 uppercase line-clamp-2">
+              {item.description.split('=')[1]}
             </p>
             <span className="text-[#776c65] my-2">
               <span className="text-[#776c65] font-semibold font-sans">$</span>
@@ -41,7 +55,7 @@ const ProductCard = () => {
             <div className="flex justify-between items-center">
               <Rating />
               <div
-                onClick={()=>setBasketModal(true)}
+                onClick={() => setBasketModal(true)}
                 className="flex items-start gap-2 md:hidden"
               >
                 <BsBasket3 className="text-[#e97625]" />

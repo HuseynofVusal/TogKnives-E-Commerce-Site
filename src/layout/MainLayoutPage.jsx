@@ -1,19 +1,25 @@
-import React, { createContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
+import { useGetBasketQuery } from "../store/api";
 
-const SebetContext = createContext();
 const MainLayoutPage = () => {
-  const [basket, setBasket] = useState(['1']);
+  const [basket, setBasket] = useState([]);
+  console.log(basket);
 
+  const { data: basketProducts } = useGetBasketQuery();
+  useEffect(() => {
+    if (basketProducts) {
+      setBasket(basketProducts.items);
+    }
+  }, [basketProducts]);
   return (
-    <SebetContext value={{ basket, setBasket }}>
-      <Header />
-      <Outlet />
+    <>
+      <Header basket={basket} />
+      <Outlet context={[basket]} />
       <Footer />
-    </SebetContext>
+    </>
   );
 };
 export default MainLayoutPage;
-export { SebetContext };

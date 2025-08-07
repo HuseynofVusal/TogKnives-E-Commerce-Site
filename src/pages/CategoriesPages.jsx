@@ -7,9 +7,11 @@ const CategoriesPages = () => {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
+  
   const selectedKey = params.get("category") || "knives";
 
   const selectedItem = categories.find((item) => item.key == selectedKey);
+  
   const { name, desc, img, descBonus } = selectedItem;
 
   return (
@@ -25,7 +27,7 @@ const CategoriesPages = () => {
             className={
               "text-[14px] font-extralight text-[#a9a39f] leading-[15px] cursor-pointer py-1 uppercase border-r border-[#776c65] px-2"
             }
-            to="/"
+            to="/main"
           >
             Home
           </NavLink>

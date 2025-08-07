@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
-import { products } from "../data/products";
 import { NavLink } from "react-router";
 
-const BasketModal = ({ setBasketModal }) => {
+const BasketModal = ({ setBasketModal,basketModalId,products}) => {
+  
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const modalId = products.find(item=>item.id==basketModalId)
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -67,30 +69,29 @@ const BasketModal = ({ setBasketModal }) => {
             Added to your basket!
           </span>
         </div>
-        {products.map((item) => (
+        
           <div
-            key={item.id}
+            key={modalId.id}
             className="w-full relative flex items-center gap-3 py-4"
           >
             <div className="max-w-30 h-auto relative">
               <img
-                src={item.image}
+                src={modalId.image}
                 className="max-h-[615px] w-full object-cover"
                 alt=""
               />
             </div>
             <div className="p-3">
-              <h3 className="text-[#776c65] my-2">{item.name}</h3>
+              <h3 className="text-[#776c65] my-2">{modalId.name}</h3>
               <span className="text-[#776c65] my-2">
                 <span className="text-[#776c65] font-semibold font-sans">
                   $
                 </span>
-                {item.price}.00
+                {modalId.price}.00
               </span>
               <div className="flex justify-between items-center"></div>
             </div>
           </div>
-        ))}
         <div className="flex gap-3 sm:mb-4">
           <svg
             width="64px"
@@ -144,7 +145,7 @@ const BasketModal = ({ setBasketModal }) => {
           </p>
         </div>
         <div className="flex w-full gap-2 mt-auto">
-            <NavLink to='/basket' className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">
+            <NavLink to='/main/basket' className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">
               View Basket
             </NavLink>
           <button className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">

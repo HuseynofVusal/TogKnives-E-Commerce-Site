@@ -9,7 +9,7 @@ const About = () => {
       <div className="background_img w-screen lg:h-screen h-[60vh] relative">
         <img
           className="w-full h-full object-cover opacity-98"
-          src="./assets/images/About-Background.webp"
+          src="/assets/images/About-Background.webp"
           alt="Back-img"
         />
         <p className="absolute bottom-[50%] left-[10%] lg:text-6xl md:text-4xl text-3xl uppercase text-[#333]">
@@ -22,7 +22,7 @@ const About = () => {
             <div className="w-[36px]">
               <img
                 className="w-full object-cover"
-                src="./assets/images/about-icon02.webp"
+                src="/assets/images/about-icon02.webp"
                 alt="icon"
               />
             </div>
@@ -44,7 +44,7 @@ const About = () => {
         </div>
         <div className="py-10">
           <img
-            src="./assets/images/TOG-Sharp-Service-2019-scaled.webp"
+            src="/assets/images/TOG-Sharp-Service-2019-scaled.webp"
             alt="Sharp"
           />
         </div>
@@ -52,7 +52,7 @@ const About = () => {
       <div className="p-[68px_50px] bg-[#323236]  cont  flex lg:flex-row flex-col items-center gap-5">
         <div className="lg:w-1/3 w-full flex justify-center items-center">
           <img
-            src="./assets/images/TOG_-_Website_Imagery_-_Chef_Quote_-_Sat_Bains.webp"
+            src="/assets/images/TOG_-_Website_Imagery_-_Chef_Quote_-_Sat_Bains.webp"
             alt="Shef"
           />
         </div>
@@ -74,7 +74,7 @@ const About = () => {
           <div>
             <img
               className="w-[40px] h-[40px]"
-              src="./assets/images/home-icons-1.avif"
+              src="/assets/images/home-icons-1.avif"
               alt="icon"
             />
           </div>
