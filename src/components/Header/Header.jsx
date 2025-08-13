@@ -7,20 +7,20 @@ import BurgerMenu from "./BurgerMenu";
 import { NavLink, useLocation } from "react-router";
 import { useGetCategoryQuery } from "../../store/api";
 
-const Header = ({basket}) => {
+const Header = ({ basket }) => {
   const [burger, setBurger] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [categories,setCategories] = useState()
-  
+  const [categories, setCategories] = useState();
+
   const location = useLocation().pathname;
 
-  const {data:categoriesData} = useGetCategoryQuery()
-  
-  useEffect(()=>{
-    if(categoriesData){
-      setCategories(categoriesData)
+  const { data: categoriesData } = useGetCategoryQuery();
+
+  useEffect(() => {
+    if (categoriesData) {
+      setCategories(categoriesData);
     }
-  },[categoriesData])
+  }, [categoriesData]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +30,6 @@ const Header = ({basket}) => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-    
   }, []);
 
   return (
@@ -60,22 +59,22 @@ const Header = ({basket}) => {
 
         {/* Categories  */}
         <ul className="hidden lg:flex items-center justify-center uppercase gap-4">
-          {categories?.map(item=>(
-             <NavLink
-             key={item.id}
-            to={`/main/category?category=${item.slug}`}
-            className={`${
-              isScrolled || location != "/main/category"
-                ? "text-[#776c65]"
-                : "text-[#e97625]"
-            } relative text-[13px] group text-[#776c65] leading-[15px] cursor-pointer`}
-          >
-            <span className="font-semibold">{item.name}</span>
-            <span
-              className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
+          {categories?.map((item) => (
+            <NavLink
+              key={item.id}
+              to={`/main/category?category=${item.slug}&category=${item.id}`}
+              className={`${
+                isScrolled || location != "/main/category"
+                  ? "text-[#776c65]"
+                  : "text-[#e97625]"
+              } relative text-[13px] group text-[#776c65] leading-[15px] py-2 cursor-pointer`}
+            >
+              <span className="font-semibold">{item.name}</span>
+              <span
+                className="absolute left-0 top-full w-0 h-[2px] bg-[#e97625]
  group-hover:w-full duration-300 "
-            ></span>
-          </NavLink>
+              ></span>
+            </NavLink>
           ))}
         </ul>
         <div className="flex justify-end items-center  gap-2">
@@ -93,7 +92,9 @@ const Header = ({basket}) => {
             </NavLink>
           </div>
           <div className="flex items-center content-end gap-2 text-2xl">
-            <CiSearch className="hidden sm:block" />
+            <NavLink to="/main/search">
+              <CiSearch className="hidden sm:block" />
+            </NavLink>
             <LuUser />
             <NavLink to="/main/basket" className="relative">
               <BsBasket3 />

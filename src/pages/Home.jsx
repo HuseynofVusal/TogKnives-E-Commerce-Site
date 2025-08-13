@@ -3,9 +3,12 @@ import HeroSection from "../components/HeroSection";
 import { HiHome } from "react-icons/hi";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlinePayment } from "react-icons/md";
+import { useState } from "react";
+import Chat from "../components/Chat";
 
 const Home = () => {
-  
+  const [flag, setFlag] = useState(false);
+  console.log(flag);
 
   return (
     <main className="relative">
@@ -90,9 +93,19 @@ const Home = () => {
       </div>
 
       {/* Chat Button  */}
-      <div className="bg-[#e97625] fixed right-[3%] bottom-[3%] z-50 flex items-center gap-2 px-4 py-3 rounded-xl hover:scale-[1.1] duration-200 text-white cursor-pointer">
+      <div
+        className={`bg-[#e97625] fixed right-[3%] bottom-[3%] z-50 flex items-center gap-2 px-4 py-3 rounded-xl ${
+          !flag && "hover:scale-[1.1]"
+        } duration-200 text-white cursor-pointer`}
+      >
         <AiFillMessage className="text-white text-xl" />
-        <span className="font-semibold">Chat with us</span>
+        <span
+          onClick={() => setFlag(true)}
+          className={`font-semibold ${flag && "hidden"}`}
+        >
+          Chat with us
+        </span>
+        {flag && <Chat setFlag={setFlag} flag={flag} />}
       </div>
     </main>
   );

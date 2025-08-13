@@ -16,25 +16,25 @@ const Footer = () => {
               Shop
             </p>
             <ul className="mt-4 flex flex-col justify-start text-left">
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Kitchen Knives
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Storage
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Sharpening
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Chopping Boards
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Higonokami
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Accessories
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Gift Vouches
               </li>
             </ul>
@@ -44,16 +44,16 @@ const Footer = () => {
               Tog Knives
             </p>
             <ul className="mt-4 flex flex-col justify-start text-left ">
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 About
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 What Chef Say
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 News
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Contact Us
               </li>
             </ul>
@@ -63,28 +63,28 @@ const Footer = () => {
               Information
             </p>
             <ul className="mt-4 flex flex-col justify-start text-left">
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 30 Days Home Trial
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Knife Buying Guide
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 After Care
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Sharpenning Guide
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Sharpenning Service
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Returns
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Shipping & Taxes
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] leading-[15px] cursor-pointer py-3 uppercase">
+              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Clarna
               </li>
             </ul>

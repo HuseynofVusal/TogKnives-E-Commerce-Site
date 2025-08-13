@@ -1,31 +1,35 @@
 import { BsBasket3 } from "react-icons/bs";
-import { NavLink, useOutletContext } from "react-router";
+import { NavLink, useLocation, useOutletContext } from "react-router";
 import { Minus, Plus, Gift, Clock } from "lucide-react";
 import { useAddBasketMutation, useDeleteBasketMutation } from "../store/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Basket = () => {
   const basket = useOutletContext()[0];
-  console.log(basket);
 
   const [addBasket, ...basketData] = useAddBasketMutation();
   const [deleteBasket, ...deletedBasketData] = useDeleteBasketMutation();
-
+  deletedBasketData;
+  basketData;
   const [notes, setNotes] = useState("");
 
-  const updateQuantity = async (basketId, quantity) => {
-    console.log(quantity);
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search]);
 
+  const updateQuantity = async (basketId, quantity) => {
     await addBasket({ basketId, quantity });
   };
 
   const removeItem = async (id) => {
-    console.log(id);
-    
     await deleteBasket(id);
   };
 
-  const total = basket.reduce((sum, item) => sum + +item.price, 0);
+  const total = basket.reduce(
+    (sum, item) => sum + +item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="pt-[84px]">
@@ -41,7 +45,7 @@ const Basket = () => {
             Your Cart is Empty
           </div>
           <NavLink
-            to="/"
+            to="/main"
             className=" bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2"
           >
             Continue Shopping
@@ -49,9 +53,12 @@ const Basket = () => {
         </div>
       ) : (
         <div className="max-w-7xl mx-auto p-4 sm:p-6 bg-white min-h-screen">
+          <h1 className="uppercase md:text-4xl text-2xl text-[#e97625] md:tracking-[1.5rem] tracking-[1rem] mb-15 text-center">
+            Shopping Basket
+          </h1>
           <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
             {/* Cart Items Section */}
-            <div className="flex-1">
+            <div className="flex-1 h-[70vh] overflow-y-auto scrollbar-hide py-5">
               {/* Desktop Header - Hidden on mobile */}
               <div className="hidden md:grid grid-cols-4 gap-4 pb-4 mb-6 border-b border-gray-200">
                 <div className="text-base lg:text-lg font-medium text-gray-900">
@@ -111,14 +118,14 @@ const Basket = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div className="text-sm text-gray-600">
                           Price:{" "}
-                          <span className="font-semibold text-gray-900">
+                          <span className="font-semibold font-sans text-gray-900">
                             ${item.price}
                           </span>
                         </div>
                         <div className="text-sm text-gray-600">
                           Total:{" "}
-                          <span className="font-semibold text-gray-900">
-                            ${item.price}
+                          <span className="font-semibold font-sans text-gray-900">
+                            ${+item.price * item.quantity}
                           </span>
                         </div>
                       </div>
@@ -129,19 +136,19 @@ const Basket = () => {
                             onClick={() =>
                               updateQuantity(item?.product?.id, -1)
                             }
-                            className="p-2 hover:bg-gray-50 text-gray-500"
+                            className="p-2 !cursor-pointer hover:bg-gray-50 text-gray-500"
                             disabled={item.quantity <= 1}
                           >
-                            <Minus size={14} />
+                            <Minus className="!cursor-pointer" size={14} />
                           </button>
                           <span className="px-3 py-2 min-w-[50px] text-center text-sm">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item?.product?.id, 1)}
-                            className="p-2 hover:bg-gray-50 text-gray-500"
+                            className="p-2 hover:bg-gray-50 text-gray-500 !cursor-pointer"
                           >
-                            <Plus size={14} />
+                            <Plus className="!cursor-pointer" size={14} />
                           </button>
                         </div>
 
@@ -189,7 +196,7 @@ const Basket = () => {
 
                       {/* Price */}
                       <div className="text-center">
-                        <span className="text-base lg:text-lg font-medium text-gray-900">
+                        <span className="text-base lg:text-lg font-sans font-medium text-gray-900">
                           ${item.price}
                         </span>
                       </div>
@@ -198,7 +205,9 @@ const Basket = () => {
                       <div className="flex items-center justify-center">
                         <div className="flex items-center border border-gray-300 rounded">
                           <button
-                            onClick={() => updateQuantity(item?.product?.id, -1)}
+                            onClick={() =>
+                              updateQuantity(item?.product?.id, -1)
+                            }
                             className="p-2 hover:bg-gray-50 text-gray-500"
                             disabled={item.quantity <= 0}
                           >
@@ -208,9 +217,7 @@ const Basket = () => {
                             {item.quantity}
                           </span>
                           <button
-                            onClick={() =>
-                              updateQuantity(item?.product?.id, 1)
-                            }
+                            onClick={() => updateQuantity(item?.product?.id, 1)}
                             className="p-2 hover:bg-gray-50 text-gray-500"
                           >
                             <Plus size={16} />
@@ -221,7 +228,7 @@ const Basket = () => {
                       {/* Total */}
                       <div className="text-right">
                         <span className="text-base lg:text-lg font-medium font-sans text-gray-900">
-                          ${item.price}
+                          ${(+item.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
 
@@ -244,9 +251,12 @@ const Basket = () => {
             <div className="xl:w-80 xl:flex-shrink-0">
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6 xl:sticky xl:top-4">
                 {/* Checkout Button */}
-                <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-lg mb-4 sm:mb-6 transition-colors text-sm sm:text-base">
+                <NavLink
+                  to="/main/checkout"
+                  className="w-full block bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase mb-5"
+                >
                   CHECKOUT
-                </button>
+                </NavLink>
 
                 {/* Order Summary */}
                 <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">

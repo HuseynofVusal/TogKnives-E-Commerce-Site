@@ -148,9 +148,9 @@ const BasketModal = ({ setBasketModal,basketModalId,products}) => {
             <NavLink to='/main/basket' className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">
               View Basket
             </NavLink>
-          <button className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">
+          <NavLink to="/main/checkout" className="w-full bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase">
             CheckOut
-          </button>
+          </NavLink>
         </div>
       </div>
     </>

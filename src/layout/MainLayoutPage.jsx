@@ -6,7 +6,6 @@ import { useGetBasketQuery } from "../store/api";
 
 const MainLayoutPage = () => {
   const [basket, setBasket] = useState([]);
-  console.log(basket);
 
   const { data: basketProducts } = useGetBasketQuery();
   useEffect(() => {

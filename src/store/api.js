@@ -2,25 +2,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const newsApi = createApi({
   reducerPath: "newsApi",
-
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
-
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
-
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
-
       return headers;
     },
   }),
-
-  tagTypes: ["Category", "Product", "Basket"],
-
+  tagTypes: ["Category", "Product"],
   endpoints: (builder) => ({
-    // Login
+    // AUTH
     login: builder.mutation({
       query: (params) => ({
         url: "/api/auth/signin",
@@ -32,18 +26,43 @@ export const newsApi = createApi({
       }),
     }),
 
-    // ✅ Category
+    // CATEGORY
     getCategory: builder.query({
       query: () => "/api/category",
       providesTags: ["Category"],
     }),
-
-    // ✅ Product
-    getProduct: builder.query({
-      query: () => "/api/product",
-      providesTags: ["Product"],
+    createCategory: builder.mutation({
+      query: (params) => ({
+        url: "/api/category",
+        method: "POST",
+        body: params,
+      }),
+      invalidatesTags: ["Category"],
+    }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `/api/category/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Category"],
+    }),
+    updateCategory: builder.mutation({
+      query: (params) => ({
+        url: `/category/${params.modal}`,
+        method: "PUT",
+        body: { name: params.name, slug: params.slug },
+      }),
+      invalidatesTags: ["Category"],
     }),
 
+    // IMAGE UPLOAD
+    uploadImage: builder.mutation({
+      query: (formData) => ({
+        url: "/api/upload/image",
+        method: "POST",
+        body: formData,
+      }),
+    }),
     // getBasket
     getBasket: builder.query({
       query: () => "/api/basket",
@@ -75,12 +94,28 @@ export const newsApi = createApi({
       invalidatesTags: ["Basket"],
     }),
 
-    //UPDATE product
-    updateProduct: builder.mutation({
-      query: ({ id, data }) => ({
+    // PRODUCT
+    createProduct: builder.mutation({
+      query: (newProduct) => ({
+        url: "/api/product",
+        method: "POST",
+        body: newProduct,
+      }),
+      invalidatesTags: ["Product"],
+    }),
+    getProduct: builder.query({
+      query: () => "/api/product/all",
+      providesTags: ["Product"],
+    }),
+    getProductByCategoryId: builder.query({
+      query: (id) => `/api/product/category/${id}`,
+      providesTags: ["Category"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
         url: `/api/product/${id}`,
-        method: "PUT",
-        body: data,
+        method: "DELETE",
+        body: id,
       }),
       invalidatesTags: ["Product"],
     }),
@@ -88,11 +123,18 @@ export const newsApi = createApi({
 });
 
 export const {
-  useGetCategoryQuery,
-  useGetProductQuery,
-  useAddBasketMutation,
-  useDeleteBasketMutation,
-  useUpdateProductMutation,
   useLoginMutation,
+  useGetCategoryQuery,
+  useDeleteCategoryMutation,
+  useUpdateCategoryMutation,
+  useCreateCategoryMutation,
+  useUploadImageMutation,
+  useCreateProductMutation,
+  useDeleteProductMutation,
+  useGetProductQuery,
+  useGetProductByCategoryIdQuery,
+  useAddBasketMutation,
   useGetBasketQuery,
+  useDeleteBasketMutation,
 } = newsApi;
+export default newsApi;

@@ -19,21 +19,25 @@ const ProductDetails = () => {
   const [basketModalId, setBasketModalId] = useState(null);
 
   const [products, setProducts] = useState([]);
+  
+
   const { data: fetchedProducts, ...getStatus } = useGetProductQuery();
   const [addBasket, { data: basketProduct }] = useAddBasketMutation();
-  
-  console.log(products);
-  const location = useLocation().search.split("=")[1];
-  
+
+  getStatus,
+  basketProduct
+
+  const location = useLocation().search.split("=")[1].split("&")[0];
+
   useEffect(() => {
     if (fetchedProducts) {
-      const productsWithQuantity = fetchedProducts.data.map((item) => ({
-      ...item,
-      quantity: 1,  
-    }));
+      const productsWithQuantity = fetchedProducts.map((item) => ({
+        ...item,
+        quantity: 1,
+      }));
 
-    setProducts(productsWithQuantity);
-      const currentProduct = fetchedProducts.data.find(
+      setProducts(productsWithQuantity);
+      const currentProduct = fetchedProducts.find(
         (item) => item.id == location
       );
 
@@ -42,6 +46,9 @@ const ProductDetails = () => {
       }
     }
   }, [fetchedProducts, location]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search]);
 
   const handleImageClick = (clickedImage) => {
     setMainImage(clickedImage);
@@ -67,11 +74,11 @@ const ProductDetails = () => {
                   >
                     Home
                   </NavLink>
-                  <span className="text-[13px] font-extralight text-[#dad7d5] leading-[15px] cursor-pointer py-1 uppercase border-r-2 border-[#776c65] px-2">
-                    Category
-                  </span>
+                  <NavLink to={`/main/category?category=${item.category.slug}&category=${item.category.id}`} className="text-[13px] font-extralight text-[#dad7d5] leading-[15px] cursor-pointer py-1 uppercase border-r-2 border-[#776c65] px-2">
+                    {item.category.name}
+                  </NavLink>
                   <span className="text-[13px] font-extralight text-[#a9a39f] leading-[15px] cursor-pointer py-1 uppercase px-2">
-                    Product Name
+                    {item.name}
                   </span>
                 </div>
                 <div className="flex lg:flex-row flex-col lg:gap-0 gap-4 mt-10 ">
@@ -96,7 +103,7 @@ const ProductDetails = () => {
                             onClick={() => handleImageClick(img.url)}
                             src={img.url}
                             alt={`thumbnail-${i}`}
-                            className="w-full h-24 object-cover rounded-md"
+                            className="w-full h-35 object-cover rounded-md"
                           />
                         </div>
                       ))}
