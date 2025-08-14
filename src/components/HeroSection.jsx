@@ -1,5 +1,5 @@
 import React from "react";
-import { BiRightArrow } from "react-icons/bi";
+import { BiRightArrow, BiRightArrowAlt } from "react-icons/bi";
 import { NavLink } from "react-router";
 
 const HeroSection = () => {
@@ -28,7 +28,7 @@ const HeroSection = () => {
         >
           <span className="whitespace-nowrap group-hover:text-white duration-400">Discover Your Knife</span>
           <span className="text-lg inline-block transition-all duration-300 group-hover:translate-x-3">
-            <BiRightArrow className="text-white" />
+            <BiRightArrowAlt className="text-white text-2xl" />
           </span>
         </NavLink>
       </div>

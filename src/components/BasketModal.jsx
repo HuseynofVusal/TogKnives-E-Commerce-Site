@@ -71,23 +71,23 @@ const BasketModal = ({ setBasketModal,basketModalId,products}) => {
         </div>
         
           <div
-            key={modalId.id}
+            key={modalId?.id}
             className="w-full relative flex items-center gap-3 py-4"
           >
             <div className="max-w-30 h-auto relative">
               <img
-                src={modalId.image}
+                src={modalId?.image}
                 className="max-h-[615px] w-full object-cover"
                 alt=""
               />
             </div>
             <div className="p-3">
-              <h3 className="text-[#776c65] my-2">{modalId.name}</h3>
+              <h3 className="text-[#776c65] my-2">{modalId?.name}</h3>
               <span className="text-[#776c65] my-2">
                 <span className="text-[#776c65] font-semibold font-sans">
                   $
                 </span>
-                {modalId.price}.00
+                {modalId?.price}.00
               </span>
               <div className="flex justify-between items-center"></div>
             </div>

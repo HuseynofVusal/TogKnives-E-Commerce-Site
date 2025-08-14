@@ -54,3 +54,14 @@ export const categories = [
     descBonus: "",
   },
 ];
+
+export const toCategories = [
+  { name: "knives", img: "/assets/images/knivess.webp", id: 7 },
+
+  { name: "sets", img: "/assets/images/setss.webp", id: 8 },
+  { name: "storage", img: "/assets/images/storagee.webp", id: 9 },
+  { name: "sharpening", img: "/assets/images/sharpeningg.webp", id: 10 },
+  { name: "boards", img: "/assets/images/boardss.webp", id: 11 },
+  { name: "higonokami", img: "/assets/images/higonokamii.webp" },
+  { name: "accessories", img: "/assets/images/accessoriess.webp", id: 12 },
+];

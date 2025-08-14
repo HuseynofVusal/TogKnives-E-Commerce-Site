@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HiHome } from "react-icons/hi";
 import { MdOutlinePayment } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
+import { useLocation } from "react-router";
 
 const About = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.search, location.pathname]);
+
   return (
     <main>
       <div className="background_img w-screen lg:h-screen h-[60vh] relative">

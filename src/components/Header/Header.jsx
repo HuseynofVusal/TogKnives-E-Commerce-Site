@@ -6,9 +6,13 @@ import { BsBasket3 } from "react-icons/bs";
 import BurgerMenu from "./BurgerMenu";
 import { NavLink, useLocation } from "react-router";
 import { useGetCategoryQuery } from "../../store/api";
+import Chat from "./Chat";
+import { AiFillMessage } from "react-icons/ai";
+import { IoMdClose } from "react-icons/io";
 
 const Header = ({ basket }) => {
   const [burger, setBurger] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [categories, setCategories] = useState();
 
@@ -106,6 +110,27 @@ const Header = ({ basket }) => {
         </div>
       </div>
       {burger && <BurgerMenu setBurger={setBurger} />}
+      {/* Chat Button  */}
+      <div
+        className={`bg-[#e97625] fixed right-[3%] bottom-[3%] z-50 flex items-center gap-2 px-4 py-3 rounded-xl ${
+          !flag && "hover:scale-[1.1]"
+        } duration-200 text-white cursor-pointer`}
+      >
+        <AiFillMessage className="text-white text-xl" />
+        <span
+          onClick={() => setFlag(true)}
+          className={`font-semibold ${flag && "hidden"}`}
+        >
+          Chat with us
+        </span>
+        {flag && <Chat />}
+        {flag && (
+          <IoMdClose
+            onClick={() => setFlag(false)}
+            className="absolute text-[#976625] hover:text-black hover:rotate-90 duration-200 text-2xl top-[3%] right-[4%]"
+          />
+        )}
+      </div>
     </header>
   );
 };

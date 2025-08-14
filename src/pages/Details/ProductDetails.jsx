@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import Rating from "../../components/Rating";
 import Tabs from "./Tabs";
@@ -11,6 +11,7 @@ import { TbWorld } from "react-icons/tb";
 import { HiHome } from "react-icons/hi";
 import BasketModal from "../../components/BasketModal";
 import { useAddBasketMutation, useGetProductQuery } from "../../store/api";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const [mainImage, setMainImage] = useState();
@@ -19,15 +20,14 @@ const ProductDetails = () => {
   const [basketModalId, setBasketModalId] = useState(null);
 
   const [products, setProducts] = useState([]);
-  
 
   const { data: fetchedProducts, ...getStatus } = useGetProductQuery();
-  const [addBasket, { data: basketProduct }] = useAddBasketMutation();
-
-  getStatus,
-  basketProduct
+  const [addBasket, { isLoading: isAdding, isSuccess }] =
+    useAddBasketMutation();
 
   const location = useLocation().search.split("=")[1].split("&")[0];
+  const toastId = useRef(null);
+
 
   useEffect(() => {
     if (fetchedProducts) {
@@ -50,12 +50,32 @@ const ProductDetails = () => {
     window.scrollTo(0, 0);
   }, [location.pathname, location.search]);
 
+  useEffect(() => {
+      if (isAdding) {
+        if (!toastId.current) {
+          toastId.current = toast.loading("Adding to basket...");
+        }
+      }
+  
+      if (isSuccess) {
+        if (toastId.current) {
+          toast.success("Successfully added to basket!", { id: toastId.current });
+          toastId.current = null;
+        }
+      }
+    }, [isAdding, isSuccess]);
+
   const handleImageClick = (clickedImage) => {
     setMainImage(clickedImage);
   };
 
   const handleAddBasket = async (basketId, quantity) => {
-    await addBasket({ basketId, quantity });
+    try {
+      await addBasket({ basketId, quantity });
+      // toast.success("Product added to basket!");
+    } catch (error) {
+      toast.error("Failed to add product.");
+    }
   };
 
   return (
@@ -74,7 +94,10 @@ const ProductDetails = () => {
                   >
                     Home
                   </NavLink>
-                  <NavLink to={`/main/category?category=${item.category.slug}&category=${item.category.id}`} className="text-[13px] font-extralight text-[#dad7d5] leading-[15px] cursor-pointer py-1 uppercase border-r-2 border-[#776c65] px-2">
+                  <NavLink
+                    to={`/main/category?category=${item.category.slug}&category=${item.category.id}`}
+                    className="text-[13px] font-extralight text-[#dad7d5] leading-[15px] cursor-pointer py-1 uppercase border-r-2 border-[#776c65] px-2"
+                  >
                     {item.category.name}
                   </NavLink>
                   <span className="text-[13px] font-extralight text-[#a9a39f] leading-[15px] cursor-pointer py-1 uppercase px-2">
@@ -222,7 +245,7 @@ const ProductDetails = () => {
               </div>
             )
         )}
-        {basketModal && (
+        {basketModal && isSuccess && (
           <BasketModal
             setBasketModal={setBasketModal}
             basketModalId={basketModalId}

@@ -54,7 +54,7 @@ const BurgerMenu = ({ setBurger }) => {
               onClick={() => {
                 setBurger(false);
               }}
-              to={`/main/category?category=${item.toLowerCase()}`}
+              to={`/main/category?category=${item.toLowerCase()}&category=${i+7}`}
               key={i}
               className="text-[16px] font-extralight text-[#776c65] leading-[15px] cursor-pointer py-3 uppercase flex flex-col"
             >

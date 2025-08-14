@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-const StarRating = () => {
+const Rating = () => {
   const rating = (Math.random() * (5 - 4) + 4).toFixed(1);
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating - fullStars >= 0.5;
@@ -22,4 +22,4 @@ const StarRating = () => {
   );
 };
 
-export default StarRating;
+export default Rating;

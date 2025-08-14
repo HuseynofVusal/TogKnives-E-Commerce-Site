@@ -3,6 +3,7 @@ import { NavLink, useLocation, useOutletContext } from "react-router";
 import { Minus, Plus, Gift, Clock } from "lucide-react";
 import { useAddBasketMutation, useDeleteBasketMutation } from "../store/api";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const Basket = () => {
   const basket = useOutletContext()[0];
@@ -22,10 +23,14 @@ const Basket = () => {
     await addBasket({ basketId, quantity });
   };
 
-  const removeItem = async (id) => {
-    await deleteBasket(id);
-  };
-
+ const removeItem = async (id) => {
+  try {
+    await deleteBasket(id).unwrap();
+    toast.success("Product removed from basket!");
+  } catch (error) {
+    toast.error("Failed to remove product!");
+  }
+};
   const total = basket.reduce(
     (sum, item) => sum + +item.price * item.quantity,
     0

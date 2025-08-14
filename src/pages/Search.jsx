@@ -15,7 +15,10 @@ const Search = () => {
 
   useEffect(() => {
     if (fetchedProducts) {
-      setProducts(fetchedProducts);
+      setProducts(fetchedProducts.map((item)=>({
+        ...item,
+        quantity: 1,
+      })));
     }
   }, [fetchedProducts]);
 

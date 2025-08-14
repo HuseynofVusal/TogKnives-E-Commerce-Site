@@ -6,10 +6,8 @@ import {
   MessageSquare,
   ChevronDown,
 } from "lucide-react";
-import { FcCancel } from "react-icons/fc";
-import { GiCancel } from "react-icons/gi";
 
-const Chat = ({ setFlag}) => {
+const Chat = () => {
   const [expandedSections, setExpandedSections] = useState({});
   const [isBottomExpanded, setIsBottomExpanded] = useState(false);
 
@@ -29,7 +27,7 @@ const Chat = ({ setFlag}) => {
   ];
 
   return (
-    <div className="max-w-100 mx-auto bg-gradient-to-br relative from-orange-100 to-pink-100 min-h-[50vh] overflow-y-auto">
+    <div className="max-w-100 mx-auto bg-gradient-to-br relative scrollbar-hide rounded-lg from-orange-100 to-pink-100 h-[70vh] overflow-y-auto">
       {/* Header */}
       <div className="bg-white bg-opacity-80 backdrop-blur-sm p-6 rounded-b-2xl shadow-sm">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">TOG</h1>
@@ -78,10 +76,10 @@ const Chat = ({ setFlag}) => {
         </div>
 
         {/* Track Orders Section */}
-        <div className="mt-6 relative">
+        <div className="!mt-16 relative ">
           <button
             onClick={() => toggleSection("orders")}
-            className={`w-full bg-white rounded-lg shadow-sm p-4 flex items-center justify-between hover:shadow-md transition-all duration-200 relative ${
+            className={`w-full bg-white rounded-lg shadow-sm p-4  flex items-center justify-between hover:shadow-md transition-all duration-200 relative ${
               expandedSections["orders"] ? "z-50" : "z-10"
             }`}
           >
@@ -99,7 +97,7 @@ const Chat = ({ setFlag}) => {
           </button>
 
           {expandedSections["orders"] && (
-            <div className="absolute top-full left-0 right-0 bg-white rounded-b-lg shadow-lg z-50 overflow-hidden">
+            <div className="absolute top-full left-0 bg-white rounded-b-lg shadow-lg z-50 overflow-hidden">
               <div className="p-4 border-t border-gray-100">
                 <p className="text-sm text-gray-600 mb-3">
                   Enter your order details to track your shipment:
@@ -124,7 +122,7 @@ const Chat = ({ setFlag}) => {
       </div>
 
       {/* Bottom Contact Section */}
-      <div className="absolute bottom-0 left-0 right-0 max-w-sm mx-auto">
+      <div className="absolute -bottom-0 left-0 right-0 max-w-sm mx-auto">
         <div className="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg rounded-t-2xl">
           <button
             onClick={() => setIsBottomExpanded(!isBottomExpanded)}
@@ -162,11 +160,6 @@ const Chat = ({ setFlag}) => {
           )}
         </div>
       </div>
-
-      <GiCancel
-        onClick={() => setFlag(false)}
-        className="absolute text-[#976625] hover:text-black hover:rotate-90 duration-200 text-2xl top-[2%] right-[2%]"
-      />
     </div>
   );
 };
