@@ -99,7 +99,9 @@ const Header = ({ basket }) => {
             <NavLink to="/main/search">
               <CiSearch className="hidden sm:block" />
             </NavLink>
-            <LuUser />
+            <NavLink to="/main/login">
+              <LuUser />
+            </NavLink>
             <NavLink to="/main/basket" className="relative">
               <BsBasket3 />
               <div className="absolute -top-3 -right-3 bg-[#e97625] w-5 h-5 rounded-full flex items-center justify-center">

@@ -43,7 +43,6 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 !py-20">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Express Checkout */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <h2 className="text-lg font-medium text-gray-900 mb-4 text-center">
             Express checkout
@@ -71,7 +70,6 @@ const CheckoutPage = () => {
           <div className="text-center text-gray-500 text-sm">OR</div>
         </div>
 
-        {/* Contact */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-medium text-gray-900">Contact</h2>
@@ -110,11 +108,9 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Delivery */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <h2 className="text-lg font-medium text-gray-900 mb-4">Delivery</h2>
 
-          {/* Country/Region */}
           <div className="mb-4">
             <label className="block text-sm text-gray-600 mb-2">
               Country/Region
@@ -132,7 +128,6 @@ const CheckoutPage = () => {
             </select>
           </div>
 
-          {/* Name Fields */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="text"
@@ -152,7 +147,6 @@ const CheckoutPage = () => {
             />
           </div>
 
-          {/* Company */}
           <div className="mb-4">
             <input
               type="text"
@@ -164,7 +158,6 @@ const CheckoutPage = () => {
             />
           </div>
 
-          {/* Address */}
           <div className="mb-4 relative">
             <input
               type="text"
@@ -177,7 +170,6 @@ const CheckoutPage = () => {
             <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
 
-          {/* Apartment */}
           <div className="mb-4">
             <input
               type="text"
@@ -189,7 +181,6 @@ const CheckoutPage = () => {
             />
           </div>
 
-          {/* City and Postcode */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <input
               type="text"
@@ -209,7 +200,6 @@ const CheckoutPage = () => {
             />
           </div>
 
-          {/* Phone */}
           <div className="mb-4 relative">
             <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -223,7 +213,6 @@ const CheckoutPage = () => {
             <Info className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
 
-          {/* Text offers checkbox */}
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -239,7 +228,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Shipping Method */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <h2 className="text-lg font-medium text-gray-900 mb-4">
             Shipping method
@@ -249,7 +237,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Payment */}
         <div className="bg-white rounded-lg p-6 mb-6 shadow-sm">
           <h2 className="text-lg font-medium text-gray-900 mb-2">Payment</h2>
           <p className="text-sm text-gray-600 mb-6">
@@ -291,7 +278,6 @@ const CheckoutPage = () => {
             </div>
 
             <div className="p-4 space-y-4">
-              {/* Card Number */}
               <div className="relative">
                 <input
                   type="text"
@@ -304,7 +290,6 @@ const CheckoutPage = () => {
                 <Lock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               </div>
 
-              {/* Expiration and Security Code */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -327,7 +312,6 @@ const CheckoutPage = () => {
                 </div>
               </div>
 
-              {/* Name on Card */}
               <input
                 type="text"
                 name="nameOnCard"
@@ -337,7 +321,6 @@ const CheckoutPage = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
 
-              {/* Use shipping address as billing */}
               <div className="flex items-center">
                 <input
                   type="checkbox"
@@ -431,7 +414,6 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          {/* Security notice */}
           <div className="flex items-center text-sm text-gray-600 mb-6">
             <Lock className="w-4 h-4 mr-2" />
             <span>Secure and encrypted</span>
@@ -439,7 +421,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Pay Now Button */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <button className="w-full bg-[#e97625] cursor-pointer text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-orange-700 transition-colors mb-4">
             Pay now
@@ -458,7 +439,6 @@ const CheckoutPage = () => {
             .
           </p>
 
-          {/* Footer Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <a href="#" className="text-orange-600 hover:text-orange-700">
               Refund policy

@@ -10,10 +10,11 @@ import About from "../pages/About";
 import CategoriesPages from "../pages/CategoriesPages";
 import ProductDetails from "../pages/Details/ProductDetails";
 import Basket from "../pages/Basket";
-import Login from "../components/Login";
 import Search from "../pages/Search";
 import AdminLayoutPage from "../layout/AdminLayoutPage";
 import AdminPanel from "../components/Admin/AdminPanel";
+import AdminLogin from "../components/Admin/AdminLogin";
+import Login from "../pages/Login";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,11 +27,12 @@ export const router = createBrowserRouter(
         <Route path="/main/basket" element={<Basket />} />
         <Route path="/main/search" element={<Search />} />
         <Route path="/main/checkout" element={<CheckoutPage />} />
+        <Route path="/main/login" element={<Login />} />
       </Route>
 
       <Route path="/" element={<AdminLayoutPage />}>
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<AdminLogin />} />
       </Route>
     </>
   )

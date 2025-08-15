@@ -8,7 +8,7 @@ const HeroSection = () => {
       <video
         className="w-full h-full object-cover"
         src="/assets/videos/video.mp4"
-        // autoPlay
+        autoPlay
         muted
         loop
         playsInline

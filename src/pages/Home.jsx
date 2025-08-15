@@ -10,10 +10,11 @@ import {
   useGetProductQuery,
 } from "../store/api";
 import BasketModal from "../components/BasketModal";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsBasket3, BsFillBasket2Fill } from "react-icons/bs";
 import Rating from "../components/Rating";
 import Collection from "./Collection";
+import ProductScroll from "../components/ProductScroll";
 
 const Home = () => {
   const { data: categoriesData } = useGetProductByCategoryIdQuery(7);
@@ -34,10 +35,10 @@ const Home = () => {
     }
   }, [productsData]);
 
+  const scrollContainerRef = useRef(null);
   const [basketModalId, setBasketModalId] = useState(null);
   const [basketModal, setBasketModal] = useState(false);
   const [addBasket, { isLoading: isAdding }] = useAddBasketMutation();
-  isAdding;
 
   const handleAddBasket = async (basketId, quantity) => {
     await addBasket({ basketId, quantity }).unwrap();
@@ -98,7 +99,12 @@ const Home = () => {
           <BiRightArrowAlt className="group-hover:translate-x-2 text-xl duration-200" />
         </p>
       </div>
-      <div className="flex overflow-x-auto gap-3 !py-10 cont scrollbar-hide">
+
+      {/* Knives Section */}
+      <div
+        ref={scrollContainerRef}
+        className="flex overflow-x-auto gap-3 !py-10 cont scrollbar-hide"
+      >
         {knivesData?.map((item) => (
           <NavLink
             to={`/main/product?product=${item.id}&${item.slug}`}
@@ -171,6 +177,7 @@ const Home = () => {
           </NavLink>
         ))}
       </div>
+      <ProductScroll scrollContainerRef={scrollContainerRef} />
 
       <Collection />
 
