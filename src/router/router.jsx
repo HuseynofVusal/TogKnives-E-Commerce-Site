@@ -15,6 +15,7 @@ import AdminLayoutPage from "../layout/AdminLayoutPage";
 import AdminPanel from "../components/Admin/AdminPanel";
 import AdminLogin from "../components/Admin/AdminLogin";
 import Login from "../pages/Login";
+import Contact from "../pages/Contact";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,7 @@ export const router = createBrowserRouter(
         <Route path="/main/search" element={<Search />} />
         <Route path="/main/checkout" element={<CheckoutPage />} />
         <Route path="/main/login" element={<Login />} />
+        <Route path="/main/contact" element={<Contact />} />
       </Route>
 
       <Route path="/" element={<AdminLayoutPage />}>

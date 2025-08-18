@@ -23,14 +23,14 @@ const Basket = () => {
     await addBasket({ basketId, quantity });
   };
 
- const removeItem = async (id) => {
-  try {
-    await deleteBasket(id).unwrap();
-    toast.success("Product removed from basket!");
-  } catch (error) {
-    toast.error("Failed to remove product!");
-  }
-};
+  const removeItem = async (id) => {
+    try {
+      await deleteBasket(id).unwrap();
+      toast.success("Product removed from basket!");
+    } catch (error) {
+      toast.error("Failed to remove product!");
+    }
+  };
   const total = basket.reduce(
     (sum, item) => sum + +item.price * item.quantity,
     0
@@ -87,7 +87,7 @@ const Basket = () => {
                     key={item.id}
                     className="bg-white border border-gray-200 rounded-lg p-4 md:border-none md:bg-transparent md:p-0"
                   >
-                    {/* Mobile Layout */}
+                    {/* Mobile */}
                     <div className="md:hidden">
                       <div className="flex gap-4 mb-4">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
@@ -104,22 +104,9 @@ const Basket = () => {
                           <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide mb-2">
                             {item.description}
                           </p>
-                          {/* {item.badge && (
-                            <div
-                              className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
-                                item.badgeType === "gift"
-                                  ? "bg-amber-100 text-amber-800"
-                                  : "bg-gray-100 text-gray-700"
-                              }`}
-                            >
-                              {item.badgeType === "gift" && <Gift size={10} />}
-                              <span className="text-xs">{item.badge}</span>
-                            </div>
-                          )} */}
                         </div>
                       </div>
 
-                      {/* Mobile Price, Quantity, Total */}
                       <div className="flex items-center justify-between mb-3">
                         <div className="text-sm text-gray-600">
                           Price:{" "}
@@ -159,16 +146,15 @@ const Basket = () => {
 
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="text-xs sm:text-sm text-red-600 hover:text-red-700 uppercase tracking-wide font-medium"
+                          className="text-xs sm:text-sm text-red-600 hover:text-red-700 uppercase cursor-pointer tracking-wide font-medium"
                         >
                           REMOVE
                         </button>
                       </div>
                     </div>
 
-                    {/* Desktop Layout - Hidden on mobile */}
+                    {/* Desktop */}
                     <div className="hidden md:grid grid-cols-4 gap-4 items-center">
-                      {/* Product Info */}
                       <div className="flex gap-4 ">
                         <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
                           <img
@@ -184,36 +170,22 @@ const Basket = () => {
                           <p className="text-xs lg:text-sm text-gray-500 uppercase tracking-wide mb-3">
                             {item.description}
                           </p>
-                          {item.badge && (
-                            <div
-                              className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
-                                item.badgeType === "gift"
-                                  ? "bg-amber-100 text-amber-800"
-                                  : "bg-gray-100 text-gray-700"
-                              }`}
-                            >
-                              {item.badgeType === "gift" && <Gift size={12} />}
-                              {item.badge}
-                            </div>
-                          )}
                         </div>
                       </div>
 
-                      {/* Price */}
                       <div className="text-center">
                         <span className="text-base lg:text-lg font-sans font-medium text-gray-900">
                           ${item.price}
                         </span>
                       </div>
 
-                      {/* Quantity Controls */}
                       <div className="flex items-center justify-center">
                         <div className="flex items-center border border-gray-300 rounded">
                           <button
                             onClick={() =>
                               updateQuantity(item?.product?.id, -1)
                             }
-                            className="p-2 hover:bg-gray-50 text-gray-500"
+                            className="p-2 hover:bg-gray-50 text-gray-500 cursor-pointer"
                             disabled={item.quantity <= 0}
                           >
                             <Minus size={16} />
@@ -223,25 +195,23 @@ const Basket = () => {
                           </span>
                           <button
                             onClick={() => updateQuantity(item?.product?.id, 1)}
-                            className="p-2 hover:bg-gray-50 text-gray-500"
+                            className="p-2 hover:bg-gray-50 text-gray-500 cursor-pointer"
                           >
                             <Plus size={16} />
                           </button>
                         </div>
                       </div>
 
-                      {/* Total */}
                       <div className="text-right">
                         <span className="text-base lg:text-lg font-medium font-sans text-gray-900">
                           ${(+item.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
 
-                      {/* Remove Button */}
                       <div className="col-span-4 flex justify-end mt-2">
                         <button
                           onClick={() => removeItem(item?.product?.id)}
-                          className="text-sm text-red-600 hover:text-red-700 uppercase tracking-wide font-medium"
+                          className="text-sm text-red-600 hover:text-red-700 uppercase cursor-pointer tracking-wide font-medium"
                         >
                           REMOVE
                         </button>
@@ -252,10 +222,8 @@ const Basket = () => {
               </div>
             </div>
 
-            {/* Checkout Sidebar */}
             <div className="xl:w-80 xl:flex-shrink-0">
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6 xl:sticky xl:top-4">
-                {/* Checkout Button */}
                 <NavLink
                   to="/main/checkout"
                   className="w-full block bg-[#e97625] border-3 border-transparent whitespace-nowrap hover:border-[#e97625] text-center   hover:bg-white hover:text-[#e97625] duration-300 cursor-pointer  px-3 py-1 sm:py-2 uppercase mb-5"
@@ -263,16 +231,7 @@ const Basket = () => {
                   CHECKOUT
                 </NavLink>
 
-                {/* Order Summary */}
                 <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 text-sm sm:text-base">
-                      Subtotal
-                    </span>
-                    <span className="font-medium text-sm sm:text-base">
-                      {/* {subtotal.toFixed(2)} */}
-                    </span>
-                  </div>
                   <div className="flex justify-between items-center text-lg sm:text-xl font-semibold">
                     <span>Total</span>
                     <span>{total.toFixed(2)}USD</span>
@@ -301,7 +260,6 @@ const Basket = () => {
                   </div>
                 </div>
 
-                {/* Notes Section */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Notes

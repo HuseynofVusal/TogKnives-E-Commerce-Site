@@ -16,24 +16,42 @@ const Footer = () => {
               Shop
             </p>
             <ul className="mt-4 flex flex-col justify-start text-left">
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              <NavLink
+                to="/main/category?category=knives&category=7"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Kitchen Knives
-              </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              </NavLink>
+              <NavLink
+                to="/main/category?category=knives&category=8"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Storage
-              </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              </NavLink>
+              <NavLink
+                to="/main/category?category=knives&category=9"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Sharpening
-              </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              </NavLink>
+              <NavLink
+                to="/main/category?category=knives&category=10"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Chopping Boards
-              </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              </NavLink>
+              <NavLink
+                to="/main/category?category=knives&category=11"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Higonokami
-              </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              </NavLink>
+              <NavLink
+                to="/main/category?category=knives&category=12"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Accessories
-              </li>
+              </NavLink>
               <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 Gift Vouches
               </li>
@@ -44,18 +62,24 @@ const Footer = () => {
               Tog Knives
             </p>
             <ul className="mt-4 flex flex-col justify-start text-left ">
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              <NavLink
+                to="/main/about"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 About
-              </li>
+              </NavLink>
               <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 What Chef Say
               </li>
               <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
                 News
               </li>
-              <li className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase">
+              <NavLink
+                to="/main/contact"
+                className="text-[12px] font-extralight group text-[#dfdfdf] hover:text-[#e97625] leading-[15px] cursor-pointer py-3 uppercase"
+              >
                 Contact Us
-              </li>
+              </NavLink>
             </ul>
           </div>
           <div className="max-w-[200px]">
