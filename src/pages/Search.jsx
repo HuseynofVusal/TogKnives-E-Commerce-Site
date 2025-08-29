@@ -4,36 +4,59 @@ import { FiFilter } from "react-icons/fi";
 import { useGetProductQuery } from "../store/api";
 import ProductCard from "../components/ProductCard";
 import SortDropdown from "../components/SortDropDown";
+import LazySection from "../components/LazySection";
+import PriceRange from "../components/PriceRange";
 
 const Search = () => {
   const [search, setSearch] = useState("");
-  const [str, setStr] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
   const { data: fetchedProducts } = useGetProductQuery();
 
+  // məhsullar gələndə yüklə
   useEffect(() => {
     if (fetchedProducts) {
-      setProducts(fetchedProducts.map((item)=>({
+      const update = fetchedProducts.map((item) => ({
         ...item,
         quantity: 1,
-      })));
+      }));
+      setProducts(update);
+      setFilteredProducts(update);
+
+      // məhsulların qiymət intervalını tap
+      const prices = update.map((p) => p.price);
+      const min = Math.floor(Math.min(...prices) / 200) * 200;
+      const max = Math.ceil(Math.max(...prices) / 200) * 200;
+      setMinPrice(min);
+      setMaxPrice(max);
+      setPriceRange([min, max]);
     }
   }, [fetchedProducts]);
+
+  // search + priceRange filter
+  useEffect(() => {
+    let result = products;
+
+    if (search.trim() !== "") {
+      result = result.filter((item) =>
+        item.slug.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    result = result.filter(
+      (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
+    );
+
+    setFilteredProducts(result);
+  }, [search, products, priceRange]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const searchProducts = () => {
-    const result = products.filter((item) =>
-      item.slug.toLowerCase().includes(search.toLowerCase())
-    );
-
-    setStr(search);
-    setFilteredProducts(result);
-  };
 
   const handleSortChange = (option) => {
     const sorted = [...filteredProducts];
@@ -42,7 +65,6 @@ const Search = () => {
     } else if (option === "Price, high to low") {
       sorted.sort((a, b) => b.price - a.price);
     }
-
     setFilteredProducts(sorted);
   };
 
@@ -55,8 +77,8 @@ const Search = () => {
       >
         <h2 className="text-4xl text-[#776c65] uppercase font-sans">
           {filteredProducts.length
-            ? `${filteredProducts.length} Results for "${str}"`
-            : str.length
+            ? `${filteredProducts.length} Results`
+            : search.length
             ? "No results could be found."
             : "Search"}
         </h2>
@@ -69,26 +91,33 @@ const Search = () => {
             type="text"
             placeholder="Search for..."
           />
-          <BiSearch
-            onClick={searchProducts}
-            className="text-[#776c65] text-2xl cursor-pointer"
-          />
+          <BiSearch className="text-[#776c65] text-2xl cursor-pointer" />
         </div>
       </div>
 
-      {filteredProducts.length > 0 && (
-        <div className="flex justify-between items-center gap-3 py-7">
-          <div className="flex items-center gap-2">
-            <FiFilter className="text-[#776c65]" />
-            <span className="text-[14px] uppercase text-[#776c65] leading-[15px] cursor-pointer">
-              Filter
-            </span>
+      <LazySection>
+        {filteredProducts.length > 0 && (
+          <div className="flex justify-between items-center gap-3 py-7">
+            <div className="flex items-center gap-2">
+              <FiFilter className="text-[#776c65]" />
+              <span className="text-[14px] uppercase text-[#776c65] leading-[15px] cursor-pointer">
+                Filter
+              </span>
+            </div>
+            <PriceRange
+              value={priceRange}
+              onChange={setPriceRange}
+              min={minPrice}
+              max={maxPrice}
+            />
+            <SortDropdown onSortChange={handleSortChange} />
           </div>
-          <SortDropdown onSortChange={handleSortChange} />
-        </div>
-      )}
+        )}
+      </LazySection>
 
-      <ProductCard filteredProducts={filteredProducts} />
+      <LazySection>
+        <ProductCard filteredProducts={filteredProducts} />
+      </LazySection>
     </main>
   );
 };

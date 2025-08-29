@@ -31,7 +31,6 @@ const ProductScroll = ({ scrollContainerRef }) => {
     }
   }, []);
 
-  // Scroll functions
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
@@ -50,13 +49,11 @@ const ProductScroll = ({ scrollContainerRef }) => {
     }
   };
 
-  // Calculate progress percentage
   const progressPercentage =
     maxScroll > 0 ? (scrollPosition / maxScroll) * 100 : 0;
 
   return (
     <div className="relative py-10">
-      {/* Navigation Arrows */}
       {showLeftArrow && (
         <button
           onClick={scrollLeft}
@@ -84,30 +81,7 @@ const ProductScroll = ({ scrollContainerRef }) => {
           />
         </div>
 
-        {/* <div className="flex justify-center mt-4 gap-2">
-          <button
-            onClick={scrollLeft}
-            disabled={!showLeftArrow}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
-              showLeftArrow
-                ? "bg-[#e97625] text-white hover:bg-orange-600 "
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-          >
-            ← Previous
-          </button>
-          <button
-            onClick={scrollRight}
-            disabled={!showRightArrow}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all  ${
-              showRightArrow
-                ? "bg-[#e97625] text-white hover:bg-orange-600"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-          >
-            Next →
-          </button>
-        </div> */}
+      
       </div>
     </div>
   );

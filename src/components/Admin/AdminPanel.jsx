@@ -65,13 +65,8 @@ const AdminPanel = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategory, setFilterCategory] = useState("all");
 
-  const [
-    deleteCategory,
-    {
-      data: { ...isLoadi },
-    },
-  ] = useDeleteCategoryMutation();
-  const [deleteProduct, { data: isLoad }] = useDeleteProductMutation();
+  const [deleteCategory, ...isLoadi] = useDeleteCategoryMutation();
+  const [deleteProduct, ...isLoad] = useDeleteProductMutation();
   isLoadi, isLoad;
 
   const { data: categories = [] } = useGetCategoryQuery();

@@ -28,7 +28,7 @@ const Basket = () => {
       await deleteBasket(id).unwrap();
       toast.success("Product removed from basket!");
     } catch (error) {
-      toast.error("Failed to remove product!");
+      error && toast.error("Failed to remove product!");
     }
   };
   const total = basket.reduce(
@@ -62,9 +62,7 @@ const Basket = () => {
             Shopping Basket
           </h1>
           <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
-            {/* Cart Items Section */}
             <div className="flex-1 h-[70vh] overflow-y-auto scrollbar-hide py-5">
-              {/* Desktop Header - Hidden on mobile */}
               <div className="hidden md:grid grid-cols-4 gap-4 pb-4 mb-6 border-b border-gray-200">
                 <div className="text-base lg:text-lg font-medium text-gray-900">
                   Product
@@ -145,7 +143,7 @@ const Basket = () => {
                         </div>
 
                         <button
-                          onClick={() => removeItem(item.id)}
+                         onClick={() => removeItem(item?.product?.id)}
                           className="text-xs sm:text-sm text-red-600 hover:text-red-700 uppercase cursor-pointer tracking-wide font-medium"
                         >
                           REMOVE
@@ -241,7 +239,6 @@ const Basket = () => {
                   </p>
                 </div>
 
-                {/* Delivery Info */}
                 <div className="bg-white rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
                   <div className="flex items-start gap-2 sm:gap-3">
                     <Clock

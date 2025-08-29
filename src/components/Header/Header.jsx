@@ -47,7 +47,9 @@ const Header = ({ basket }) => {
       <div className="grid grid-cols-3 items-center justify-between max-w-[1320px] mx-auto py-4 px-6 lg:px-8">
         <div className="flex items-center gap-2 text-2xl lg:hidden">
           <MdMenu onClick={() => setBurger(true)} />
-          <CiSearch className="sm:hidden block" />
+          <NavLink to="/main/search">
+            <CiSearch className="sm:hidden block" />
+          </NavLink>
         </div>
         <NavLink className={"flex lg:justify-start justify-center"} to="/main">
           <img

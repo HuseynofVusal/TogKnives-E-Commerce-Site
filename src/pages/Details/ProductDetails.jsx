@@ -28,7 +28,6 @@ const ProductDetails = () => {
   const location = useLocation().search.split("=")[1].split("&")[0];
   const toastId = useRef(null);
 
-
   useEffect(() => {
     if (fetchedProducts) {
       const productsWithQuantity = fetchedProducts.map((item) => ({
@@ -51,19 +50,19 @@ const ProductDetails = () => {
   }, [location.pathname, location.search]);
 
   useEffect(() => {
-      if (isAdding) {
-        if (!toastId.current) {
-          toastId.current = toast.loading("Adding to basket...");
-        }
+    if (isAdding) {
+      if (!toastId.current) {
+        toastId.current = toast.loading("Adding to basket...");
       }
-  
-      if (isSuccess) {
-        if (toastId.current) {
-          toast.success("Successfully added to basket!", { id: toastId.current });
-          toastId.current = null;
-        }
+    }
+
+    if (isSuccess) {
+      if (toastId.current) {
+        toast.success("Successfully added to basket!", { id: toastId.current });
+        toastId.current = null;
       }
-    }, [isAdding, isSuccess]);
+    }
+  }, [isAdding, isSuccess]);
 
   const handleImageClick = (clickedImage) => {
     setMainImage(clickedImage);
@@ -72,14 +71,13 @@ const ProductDetails = () => {
   const handleAddBasket = async (basketId, quantity) => {
     try {
       await addBasket({ basketId, quantity });
-      // toast.success("Product added to basket!");
     } catch (error) {
-      toast.error("Failed to add product.");
+      error && toast.error("Failed to add product.");
     }
   };
 
   return (
-    <main className="md:mt-30 mt:40">
+    <main className="mt-30">
       <div className="w-full cont mt-5">
         {products.map(
           (item) =>
@@ -259,7 +257,7 @@ const ProductDetails = () => {
           <div>
             <img
               className="w-[40px] h-[40px]"
-              src="./assets/images/home-icons-1.avif"
+              src="/assets/images/home-icons-1.avif"
               alt="icon"
             />
           </div>

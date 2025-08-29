@@ -1,33 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 const Login = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-    
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-    setFormData(prev => ({
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search]);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-};
+  };
 
   const handleSubmit = () => {
-      console.log('Login attempt:', formData);
-    };
-    
-    const handleForgotPassword = () => {
-        console.log('Forgot password clicked');
-    };
-    
-    const handleSignUp = () => {
-        console.log('Sign up clicked');
-    };
-    
-    return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    console.log("Login attempt:", formData);
+  };
+
+  const handleForgotPassword = () => {
+    console.log("Forgot password clicked");
+  };
+
+  const handleSignUp = () => {
+    console.log("Sign up clicked");
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-light text-gray-600 tracking-widest">
@@ -85,6 +91,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

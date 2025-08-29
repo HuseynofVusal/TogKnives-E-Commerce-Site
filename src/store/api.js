@@ -115,7 +115,7 @@ export const newsApi = createApi({
       query: (id) => ({
         url: `/api/product/${id}`,
         method: "DELETE",
-        body: id,
+        // body: id,
       }),
       invalidatesTags: ["Product"],
     }),

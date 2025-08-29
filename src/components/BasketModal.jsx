@@ -87,7 +87,7 @@ const BasketModal = ({ setBasketModal,basketModalId,products}) => {
                 <span className="text-[#776c65] font-semibold font-sans">
                   $
                 </span>
-                {modalId?.price}.00
+                {modalId?.price}
               </span>
               <div className="flex justify-between items-center"></div>
             </div>

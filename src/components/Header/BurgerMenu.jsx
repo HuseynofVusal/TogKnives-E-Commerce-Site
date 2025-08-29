@@ -47,7 +47,7 @@ const BurgerMenu = ({ setBurger }) => {
             "Sets",
             "Storage",
             "Sharpening",
-            "Board",
+            "Boards",
             "Higonokami",
           ].map((item, i) => (
             <NavLink
