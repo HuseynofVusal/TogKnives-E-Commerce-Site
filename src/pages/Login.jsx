@@ -49,7 +49,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="E-mail"
-              className="w-full px-4 py-4 bg-white border-2 border-gray-200 text-gray-600 placeholder-gray-400 focus:outline-none focus:border-[#e97625] transition-colors"
+              className="w-full px-4 py-4 bg-white border-2 font-sans border-gray-200 text-gray-600 placeholder-gray-400 focus:outline-none focus:border-[#e97625] transition-colors"
             />
           </div>
           <div>
@@ -59,7 +59,7 @@ const Login = () => {
               value={formData.password}
               onChange={handleInputChange}
               placeholder="Password"
-              className="w-full px-4 py-4 bg-white border-2 border-gray-200 text-gray-600 placeholder-gray-400 focus:outline-none focus:border-[#e97625] transition-colors"
+              className="w-full px-4 py-4 bg-white border-2 font-sans border-gray-200 text-gray-600 placeholder-gray-400 focus:outline-none focus:border-[#e97625] transition-colors"
             />
           </div>
 

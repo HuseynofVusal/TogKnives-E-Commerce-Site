@@ -127,7 +127,7 @@ const Basket = () => {
                               updateQuantity(item?.product?.id, -1)
                             }
                             className="p-2 !cursor-pointer hover:bg-gray-50 text-gray-500"
-                            disabled={item.quantity <= 1}
+                            disabled={item.quantity <= 0}
                           >
                             <Minus className="!cursor-pointer" size={14} />
                           </button>
@@ -143,7 +143,7 @@ const Basket = () => {
                         </div>
 
                         <button
-                         onClick={() => removeItem(item?.product?.id)}
+                          onClick={() => removeItem(item?.product?.id)}
                           className="text-xs sm:text-sm text-red-600 hover:text-red-700 uppercase cursor-pointer tracking-wide font-medium"
                         >
                           REMOVE
